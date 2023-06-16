@@ -1,0 +1,490 @@
+{
+	"title": "Static Analysis",
+	"version": "v3.6.0 Beta",
+	"file_name": "com.twiceyuan.wxapk.apk",
+	"app_name": "APK.1安装器",
+	"app_type": "apk",
+	"size": "0.25MB",
+	"md5": "0ab6b9292dd0990756ae101fbba27f17",
+	"sha1": "c50c94700194692b06f230038bc35e53b4eda4b1",
+	"sha256": "5a40661888eb3a94c688ff727876beebd6b414389d84320fe40c0526a2ab37bc",
+	"package_name": "com.twiceyuan.wxapk",
+	"main_activity": "com.twiceyuan.wxapk.MainActivity",
+	"exported_activities": [
+		"com.twiceyuan.wxapk.InstallerActivity",
+		"com.twiceyuan.wxapk.ShadowActivity"
+	],
+	"browsable_activities": {
+		"com.twiceyuan.wxapk.InstallerActivity": {
+			"schemes": [
+				"file://",
+				"content://"
+			],
+			"mime_types": [
+				"application/apk.1",
+				"application/apk.1.1",
+				"application/apk.1.1.1",
+				"application/apk.1.1.1.1",
+				"application/apk.1.1.1.1.1"
+			],
+			"hosts": [
+				"*"
+			],
+			"ports": [],
+			"paths": [],
+			"path_prefixs": [],
+			"path_patterns": [],
+			"browsable": true
+		},
+		"com.twiceyuan.wxapk.ShadowActivity": {
+			"schemes": [
+				"wxapk://"
+			],
+			"mime_types": [],
+			"hosts": [
+				"wxapk"
+			],
+			"ports": [],
+			"paths": [
+				"/settings"
+			],
+			"path_prefixs": [],
+			"path_patterns": [],
+			"browsable": true
+		}
+	},
+	"activities": [
+		"com.twiceyuan.wxapk.MainActivity",
+		"com.twiceyuan.wxapk.InstallerActivity",
+		"com.twiceyuan.wxapk.ShadowActivity"
+	],
+	"receivers": [],
+	"providers": [
+		"androidx.core.content.FileProvider"
+	],
+	"services": [],
+	"libraries": [],
+	"target_sdk": "29",
+	"max_sdk": "",
+	"min_sdk": "16",
+	"version_name": "1.9",
+	"version_code": "11",
+	"icon_hidden": false,
+	"icon_found": true,
+	"certificate_analysis": {
+		"certificate_info": "APK is signed\nv1 signature: True\nv2 signature: True\nv3 signature: False\nFound 1 unique certificates\nSubject: CN=twiceYuan\nSignature Algorithm: rsassa_pkcs1v15\nValid From: 2018-11-16 07:45:06+00:00\nValid To: 2043-11-10 07:45:06+00:00\nIssuer: CN=twiceYuan\nSerial Number: 0x252ce135\nHash Algorithm: sha256\nmd5: a71435f1762b4d5bad2f18bc7acfa593\nsha1: 13067afb460cd30b1bdb7d7c2f33c3431121598a\nsha256: 60d5771200c5219713c2925f3523dec396d2a76f03d5ddc5a6c1bef94cbd21bd\nsha512: 86c81176fa25a5994812746df64dcd4fe3bd3e53577654a4d5a122840d5116395d6606084549a516bf899be36370658187fe98e1c31d33e0e3be3b22b67575a8\nPublicKey Algorithm: rsa\nBit Size: 2048\nFingerprint: 9d0107aefc9d707f561220e04026922326981674ab666aceb57f6751e4259e9b",
+		"certificate_findings": [
+			[
+				"info",
+				"Application is signed with a code signing certificate",
+				"Signed Application"
+			],
+			[
+				"warning",
+				"Application is signed with v1 signature scheme, making it vulnerable to Janus vulnerability on Android 5.0-8.0, if signed only with v1 signature scheme. Applications running on Android 5.0-7.0 signed with v1, and v2/v3 scheme is also vulnerable.",
+				"Application vulnerable to Janus Vulnerability"
+			]
+		]
+	},
+	"permissions": {
+		"android.permission.REQUEST_INSTALL_PACKAGES": {
+			"status": "dangerous",
+			"info": "Allows an application to request installing packages.",
+			"description": "Malicious applications can use this to try and trick users into installing additional malicious packages."
+		},
+		"android.permission.READ_EXTERNAL_STORAGE": {
+			"status": "dangerous",
+			"info": "read external storage contents",
+			"description": "Allows an application to read from external storage."
+		}
+	},
+	"manifest_analysis": [
+		{
+			"rule": "app_allowbackup",
+			"title": "Application Data can be Backed up<br>[android:allowBackup=true]",
+			"severity": "warning",
+			"description": "This flag allows anyone to backup your application data via adb. It allows users who have enabled USB debugging to copy application data off of the device.",
+			"name": "Application Data can be Backed up [android:allowBackup=true]",
+			"component": []
+		},
+		{
+			"rule": "exported_intent_filter_exists",
+			"title": "<strong>Activity</strong> (com.twiceyuan.wxapk.InstallerActivity) is not Protected.<br>An intent-filter exists.",
+			"severity": "warning",
+			"description": "An Activity is found to be shared with other apps on the device therefore leaving it accessible to any other application on the device. The presence of intent-filter indicates that the Activity is explicitly exported.",
+			"name": "Activity com.twiceyuan.wxapk.InstallerActivity is not Protected.An intent-filter exists.",
+			"component": [
+				"Activity",
+				"com.twiceyuan.wxapk.InstallerActivity"
+			]
+		},
+		{
+			"rule": "non_standard_launchmode",
+			"title": "Launch Mode of activity (com.twiceyuan.wxapk.ShadowActivity) is not standard.",
+			"severity": "high",
+			"description": "An Activity should not be having the launch mode attribute set to \"singleTask/singleInstance\" as it becomes root Activity and it is possible for other applications to read the contents of the calling Intent. So it is required to use the \"standard\" launch mode attribute when sensitive information is included in an Intent.",
+			"name": "Launch Mode of activity (com.twiceyuan.wxapk.ShadowActivity) is not standard.",
+			"component": [
+				"com.twiceyuan.wxapk.ShadowActivity"
+			]
+		},
+		{
+			"rule": "exported_intent_filter_exists",
+			"title": "<strong>Activity</strong> (com.twiceyuan.wxapk.ShadowActivity) is not Protected.<br>An intent-filter exists.",
+			"severity": "warning",
+			"description": "An Activity is found to be shared with other apps on the device therefore leaving it accessible to any other application on the device. The presence of intent-filter indicates that the Activity is explicitly exported.",
+			"name": "Activity com.twiceyuan.wxapk.ShadowActivity is not Protected.An intent-filter exists.",
+			"component": [
+				"Activity",
+				"com.twiceyuan.wxapk.ShadowActivity"
+			]
+		}
+	],
+	"network_security": [],
+	"binary_analysis": [],
+	"file_analysis": [],
+	"android_api": {
+		"api_ipc": {
+			"files": {
+				"a/a/a/a/a.java": "5,20,22,27,54,63",
+				"com/twiceyuan/wxapk/InstallerActivity.java": "3,4,31,31,107,107,120,120,128,128,129",
+				"com/twiceyuan/wxapk/a.java": "5,10"
+			},
+			"metadata": {
+				"description": "Inter Process Communication",
+				"severity": "info"
+			}
+		},
+		"api_start_activity": {
+			"files": {
+				"com/twiceyuan/wxapk/InstallerActivity.java": "35"
+			},
+			"metadata": {
+				"description": "Starting Activity",
+				"severity": "info"
+			}
+		},
+		"api_java_reflection": {
+			"files": {
+				"c/e/b/e.java": "11"
+			},
+			"metadata": {
+				"description": "Java Reflection",
+				"severity": "info"
+			}
+		}
+	},
+	"code_analysis": {
+		"android_read_write_external": {
+			"files": {
+				"com/twiceyuan/wxapk/a.java": "15"
+			},
+			"metadata": {
+				"cvss": 5.5,
+				"cwe": "CWE-276: Incorrect Default Permissions",
+				"owasp-mobile": "M2: Insecure Data Storage",
+				"masvs": "MSTG-STORAGE-2",
+				"ref": "https://github.com/MobSF/owasp-mstg/blob/master/Document/0x05d-Testing-Data-Storage.md#external-storage",
+				"description": "App can read/write to External Storage. Any App can read data written to External Storage.",
+				"severity": "warning"
+			}
+		},
+		"android_temp_file": {
+			"files": {
+				"com/twiceyuan/wxapk/InstallerActivity.java": "79"
+			},
+			"metadata": {
+				"cvss": 5.5,
+				"cwe": "CWE-276: Incorrect Default Permissions",
+				"owasp-mobile": "M2: Insecure Data Storage",
+				"masvs": "MSTG-STORAGE-2",
+				"description": "App creates temp file. Sensitive information should never be written into a temp file.",
+				"severity": "warning"
+			}
+		}
+	},
+	"niap_analysis": {
+		"FCS_STO_EXT.1.1": {
+			"choice": "The application does not store any credentials to non-volatile memory.",
+			"description": "Storage of Credentials",
+			"class": "Security Functional Requirements"
+		},
+		"FCS_CKM_EXT.1.1": {
+			"choice": "The application generate no asymmetric cryptographic keys.",
+			"description": "Cryptographic Key Generation Services",
+			"class": "Security Functional Requirements"
+		},
+		"FDP_DEC_EXT.1.1": {
+			"choice": "The application has access to no hardware resources.",
+			"description": "Access to Platform Resources",
+			"class": "Security Functional Requirements"
+		},
+		"FDP_DEC_EXT.1.2": {
+			"choice": "The application has access to no sensitive information repositories.",
+			"description": "Access to Platform Resources",
+			"class": "Security Functional Requirements"
+		},
+		"FDP_NET_EXT.1.1": {
+			"choice": "The application has no network communications.",
+			"description": "Network Communications",
+			"class": "Security Functional Requirements"
+		},
+		"FDP_DAR_EXT.1.1": {
+			"choice": "The application does not encrypt files in non-volatile memory.",
+			"description": "Encryption Of Sensitive Application Data",
+			"class": "Security Functional Requirements"
+		},
+		"FTP_DIT_EXT.1.1": {
+			"choice": "The application does not encrypt any data in traffic or does not transmit any data between itself and another trusted IT product.",
+			"description": "Protection of Data in Transit",
+			"class": "Security Functional Requirements"
+		}
+	},
+	"urls": [],
+	"domains": {},
+	"emails": [],
+	"strings": [
+		"\"status_bar_notification_info_overflow\" : \"၉၉၉+\"",
+		"\"show_in_launcher\" : \"显示 Launcher 图标\"",
+		"\"hide_in_launcher\" : \"隐藏 Launcher 图标\"",
+		"\"set_success\" : \"设置成功，因机型差异可能会稍后生效\"",
+		"\"app_name\" : \"APK.1安装器\"",
+		"\"apk_prompt\" : \"直接在微信中打开接收到的 APK 即可\"",
+		"\"file_provider_authority\" : \"com.twiceyuan.wxapk.FileProvider\"",
+		"\"status_bar_notification_info_overflow\" : \"999+\"",
+		"\"usage_desc\" : \"在微信中打开接收到的 APK 文件即可\"",
+		"\"status_bar_notification_info_overflow\" : \"\u200e\u200f\u200e\u200e\u200e\u200e\u200e\u200f\u200e\u200f\u200f\u200f\u200e\u200e\u200e\u200e\u200e\u200f\u200e\u200e\u200f\u200e\u200e\u200e\u200e\u200f\u200f\u200f\u200f\u200f\u200f\u200f\u200f\u200f\u200e\u200f\u200f\u200f\u200e\u200f\u200f\u200e\u200f\u200f\u200f\u200e\u200f\u200f\u200e\u200e\u200e\u200e\u200f\u200e\u200f\u200e\u200e\u200e\u200f\u200f\u200f\u200f\u200f\u200e\u200f\u200f\u200f\u200e\u200f\u200e\u200f\u200e\u200f\u200f\u200f\u200e\u200e\u200f\u200e\u200f\u200f\u200f\u200e\u200f\u200f\u200f\u200f\u200f\u200f\u200f\u200e\u200e\u200e\u200f\u200f\u200e999+\u200e\u200f\u200e\u200e\u200f\u200e\"",
+		"\"status_bar_notification_info_overflow\" : \">999\"",
+		"\"status_bar_notification_info_overflow\" : \"९९९+\"",
+		"\"status_bar_notification_info_overflow\" : \"+999\"",
+		"\"hide_icon_desc\" : \"在启动器中隐藏本应用的图标\"",
+		"\"usage_title\" : \"使用方式\"",
+		"\"status_bar_notification_info_overflow\" : \"৯৯৯+\"",
+		"\"storage_permission_denied_tip\" : \"在低版本上需要存储权限才能正常使用\"",
+		"\"pref_key_hide_icon\" : \"hide_launcher_icon\"",
+		"\"hide_icon_title\" : \"隐藏图标\""
+	],
+	"firebase_urls": [],
+	"files": [
+		"AndroidManifest.xml",
+		"META-INF/CERT.RSA",
+		"META-INF/CERT.SF",
+		"META-INF/MANIFEST.MF",
+		"META-INF/androidx.arch.core_core-runtime.version",
+		"META-INF/androidx.asynclayoutinflater_asynclayoutinflater.version",
+		"META-INF/androidx.coordinatorlayout_coordinatorlayout.version",
+		"META-INF/androidx.core_core.version",
+		"META-INF/androidx.cursoradapter_cursoradapter.version",
+		"META-INF/androidx.customview_customview.version",
+		"META-INF/androidx.documentfile_documentfile.version",
+		"META-INF/androidx.drawerlayout_drawerlayout.version",
+		"META-INF/androidx.fragment_fragment.version",
+		"META-INF/androidx.interpolator_interpolator.version",
+		"META-INF/androidx.legacy_legacy-support-core-ui.version",
+		"META-INF/androidx.legacy_legacy-support-core-utils.version",
+		"META-INF/androidx.legacy_legacy-support-v4.version",
+		"META-INF/androidx.lifecycle_lifecycle-livedata-core.version",
+		"META-INF/androidx.lifecycle_lifecycle-livedata.version",
+		"META-INF/androidx.lifecycle_lifecycle-runtime.version",
+		"META-INF/androidx.lifecycle_lifecycle-viewmodel.version",
+		"META-INF/androidx.loader_loader.version",
+		"META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version",
+		"META-INF/androidx.media_media.version",
+		"META-INF/androidx.print_print.version",
+		"META-INF/androidx.slidingpanelayout_slidingpanelayout.version",
+		"META-INF/androidx.swiperefreshlayout_swiperefreshlayout.version",
+		"META-INF/androidx.versionedparcelable_versionedparcelable.version",
+		"META-INF/androidx.viewpager_viewpager.version",
+		"META-INF/app_release.kotlin_module",
+		"META-INF/kotlin-android-extensions-runtime.kotlin_module",
+		"META-INF/kotlin-stdlib-common-coroutines.kotlin_module",
+		"META-INF/kotlin-stdlib-common.kotlin_module",
+		"META-INF/kotlin-stdlib-coroutines.kotlin_module",
+		"META-INF/kotlin-stdlib-jdk7.kotlin_module",
+		"META-INF/kotlin-stdlib.kotlin_module",
+		"classes.dex",
+		"kotlin/annotation/annotation.kotlin_builtins",
+		"kotlin/collections/collections.kotlin_builtins",
+		"kotlin/coroutines/coroutines.kotlin_builtins",
+		"kotlin/internal/internal.kotlin_builtins",
+		"kotlin/kotlin.kotlin_builtins",
+		"kotlin/ranges/ranges.kotlin_builtins",
+		"kotlin/reflect/reflect.kotlin_builtins",
+		"res/drawable-anydpi-v21/ic_launcher_background.xml",
+		"res/drawable-anydpi-v21/ic_launcher_foreground.xml",
+		"res/drawable-hdpi-v4/ic_launcher_background.png",
+		"res/drawable-hdpi-v4/ic_launcher_foreground.png",
+		"res/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+		"res/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+		"res/drawable-hdpi-v4/notification_bg_normal.9.png",
+		"res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+		"res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+		"res/drawable-ldpi-v4/ic_launcher_background.png",
+		"res/drawable-ldpi-v4/ic_launcher_foreground.png",
+		"res/drawable-mdpi-v4/ic_launcher_background.png",
+		"res/drawable-mdpi-v4/ic_launcher_foreground.png",
+		"res/drawable-mdpi-v4/notification_bg_low_normal.9.png",
+		"res/drawable-mdpi-v4/notification_bg_low_pressed.9.png",
+		"res/drawable-mdpi-v4/notification_bg_normal.9.png",
+		"res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png",
+		"res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png",
+		"res/drawable-v21/notification_action_background.xml",
+		"res/drawable-v24/$ic_launcher_foreground__0.xml",
+		"res/drawable-v24/ic_launcher_foreground.xml",
+		"res/drawable-xhdpi-v4/ic_launcher_background.png",
+		"res/drawable-xhdpi-v4/ic_launcher_foreground.png",
+		"res/drawable-xhdpi-v4/notification_bg_low_normal.9.png",
+		"res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png",
+		"res/drawable-xhdpi-v4/notification_bg_normal.9.png",
+		"res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png",
+		"res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png",
+		"res/drawable-xxhdpi-v4/ic_launcher_background.png",
+		"res/drawable-xxhdpi-v4/ic_launcher_foreground.png",
+		"res/drawable-xxxhdpi-v4/ic_launcher_background.png",
+		"res/drawable-xxxhdpi-v4/ic_launcher_foreground.png",
+		"res/drawable/notification_bg.xml",
+		"res/drawable/notification_bg_low.xml",
+		"res/drawable/notification_icon_background.xml",
+		"res/drawable/notification_tile_bg.xml",
+		"res/layout-v16/notification_template_custom_big.xml",
+		"res/layout-v17/notification_action.xml",
+		"res/layout-v17/notification_action_tombstone.xml",
+		"res/layout-v17/notification_template_big_media.xml",
+		"res/layout-v17/notification_template_big_media_custom.xml",
+		"res/layout-v17/notification_template_big_media_narrow.xml",
+		"res/layout-v17/notification_template_big_media_narrow_custom.xml",
+		"res/layout-v17/notification_template_custom_big.xml",
+		"res/layout-v17/notification_template_lines_media.xml",
+		"res/layout-v17/notification_template_media.xml",
+		"res/layout-v17/notification_template_media_custom.xml",
+		"res/layout-v21/notification_action.xml",
+		"res/layout-v21/notification_action_tombstone.xml",
+		"res/layout-v21/notification_template_custom_big.xml",
+		"res/layout-v21/notification_template_icon_group.xml",
+		"res/layout/activity_main.xml",
+		"res/layout/notification_action.xml",
+		"res/layout/notification_action_tombstone.xml",
+		"res/layout/notification_media_action.xml",
+		"res/layout/notification_media_cancel_action.xml",
+		"res/layout/notification_template_big_media.xml",
+		"res/layout/notification_template_big_media_custom.xml",
+		"res/layout/notification_template_big_media_narrow.xml",
+		"res/layout/notification_template_big_media_narrow_custom.xml",
+		"res/layout/notification_template_icon_group.xml",
+		"res/layout/notification_template_lines_media.xml",
+		"res/layout/notification_template_media.xml",
+		"res/layout/notification_template_media_custom.xml",
+		"res/layout/notification_template_part_chronometer.xml",
+		"res/layout/notification_template_part_time.xml",
+		"res/mipmap-anydpi-v26/ic_launcher.xml",
+		"res/mipmap-anydpi-v26/ic_launcher_round.xml",
+		"res/mipmap-hdpi-v4/ic_launcher.png",
+		"res/mipmap-hdpi-v4/ic_launcher_foreground.png",
+		"res/mipmap-hdpi-v4/ic_launcher_round.png",
+		"res/mipmap-mdpi-v4/ic_launcher.png",
+		"res/mipmap-mdpi-v4/ic_launcher_foreground.png",
+		"res/mipmap-mdpi-v4/ic_launcher_round.png",
+		"res/mipmap-xhdpi-v4/ic_launcher.png",
+		"res/mipmap-xhdpi-v4/ic_launcher_foreground.png",
+		"res/mipmap-xhdpi-v4/ic_launcher_round.png",
+		"res/mipmap-xxhdpi-v4/ic_launcher.png",
+		"res/mipmap-xxhdpi-v4/ic_launcher_foreground.png",
+		"res/mipmap-xxhdpi-v4/ic_launcher_round.png",
+		"res/mipmap-xxxhdpi-v4/ic_launcher.png",
+		"res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png",
+		"res/mipmap-xxxhdpi-v4/ic_launcher_round.png",
+		"res/xml/file_paths.xml",
+		"resources.arsc"
+	],
+	"exported_count": {
+		"exported_activities": 2,
+		"exported_services": 0,
+		"exported_receivers": 0,
+		"exported_providers": 0
+	},
+	"apkid": {
+		"classes.dex": {
+			"compiler": [
+				"unknown (please file detection issue!)"
+			]
+		}
+	},
+	"quark": [],
+	"trackers": {
+		"detected_trackers": 0,
+		"total_trackers": 421,
+		"trackers": []
+	},
+	"playstore_details": {
+		"error": true
+	},
+	"secrets": [
+		"\"file_provider_authority\" : \"com.twiceyuan.wxapk.FileProvider\""
+	],
+	"appsec": {
+		"high": [
+			{
+				"title": "Launch Mode of activity (com.twiceyuan.wxapk.ShadowActivity) is not standard.",
+				"description": "An Activity should not be having the launch mode attribute set to \"singleTask/singleInstance\" as it becomes root Activity and it is possible for other applications to read the contents of the calling Intent. So it is required to use the \"standard\" launch mode attribute when sensitive information is included in an Intent.",
+				"section": "manifest"
+			}
+		],
+		"warning": [
+			{
+				"title": "Application vulnerable to Janus Vulnerability",
+				"description": "Application is signed with v1 signature scheme, making it vulnerable to Janus vulnerability on Android 5.0-8.0, if signed only with v1 signature scheme. Applications running on Android 5.0-7.0 signed with v1, and v2/v3 scheme is also vulnerable.",
+				"section": "certificate"
+			},
+			{
+				"title": "Application Data can be Backed up",
+				"description": "[android:allowBackup=true]\nThis flag allows anyone to backup your application data via adb. It allows users who have enabled USB debugging to copy application data off of the device.",
+				"section": "manifest"
+			},
+			{
+				"title": "Activity (com.twiceyuan.wxapk.InstallerActivity) is not Protected.",
+				"description": "An intent-filter exists.\nAn Activity is found to be shared with other apps on the device therefore leaving it accessible to any other application on the device. The presence of intent-filter indicates that the Activity is explicitly exported.",
+				"section": "manifest"
+			},
+			{
+				"title": "Activity (com.twiceyuan.wxapk.ShadowActivity) is not Protected.",
+				"description": "An intent-filter exists.\nAn Activity is found to be shared with other apps on the device therefore leaving it accessible to any other application on the device. The presence of intent-filter indicates that the Activity is explicitly exported.",
+				"section": "manifest"
+			},
+			{
+				"title": "App can read/write to External Storage. Any App can read data written to External Storage.",
+				"description": "App can read/write to External Storage. Any App can read data written to External Storage.\nhttps://github.com/MobSF/owasp-mstg/blob/master/Document/0x05d-Testing-Data-Storage.md#external-storage",
+				"section": "code"
+			},
+			{
+				"title": "App creates temp file. Sensitive information should never be written into a temp file.",
+				"description": "App creates temp file. Sensitive information should never be written into a temp file.\n",
+				"section": "code"
+			}
+		],
+		"info": [],
+		"secure": [
+			{
+				"title": "This application has no privacy trackers",
+				"description": "This application does not include any user or device trackers. Unable to find trackers during static analysis.",
+				"section": "trackers"
+			}
+		],
+		"hotspot": [
+			{
+				"title": "Found 2 critical permission(s)",
+				"description": "Ensure that these permissions are required by the application.\n\nandroid.permission.REQUEST_INSTALL_PACKAGES (dangerous): Allows an application to request installing packages. - Malicious applications can use this to try and trick users into installing additional malicious packages.\n\nandroid.permission.READ_EXTERNAL_STORAGE (dangerous): read external storage contents - Allows an application to read from external storage.",
+				"section": "permissions"
+			}
+		],
+		"total_trackers": 421,
+		"trackers": 0,
+		"security_score": 52,
+		"app_name": "APK.1安装器",
+		"file_name": "com.twiceyuan.wxapk.apk",
+		"hash": "0ab6b9292dd0990756ae101fbba27f17",
+		"version_name": "1.9"
+	},
+	"average_cvss": null,
+	"dynamic_analysis_done": false,
+	"virus_total": null
+}

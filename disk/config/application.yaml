@@ -1,0 +1,25 @@
+mysql:
+  username: root
+  password: Tjj@2002
+  host: 123.56.9.154
+  port: 3306
+  dbname: disk
+  timeout: 10s
+redis:
+  addr: "123.56.9.154:6379"
+  password: "Tjj@2002"
+  poolSize: 30
+  DB: 1
+  minIdleConn: 30
+config:
+  email: "HKZYGLMUUOCYKXIS"
+  pageSize: 20
+mongodb:
+  addr: "123.56.9.154:27017"
+  username: admin
+  password: Tjj@2002
+  database: test
+oss:
+  CosBucket: "https://1-1256941246.cos.ap-nanjing.myqcloud.com"
+  Id: "AKIDxlLl199wBGJB1dGm6HKE0fGm8LVbNvFS"
+  key: "Ogt0xiKpBOSL6f7Yw68xnUyFLFE7mMvO"
