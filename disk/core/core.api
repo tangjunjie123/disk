@@ -1,0 +1,157 @@
+type userRequest {
+	Name     string `json:"name"`
+	Password string `json:"Password"`
+}
+
+type Response {
+	Data string `json:"data"`
+	Err  string `json:"err"`
+}
+type userRegister {
+	Name     string `json:"name"`
+	Password string `json:"Password"`
+	Identity string `json:"identity"`
+	Email    string `json:"email"`
+	Code     string `json:"code"`
+}
+
+type FileUploadRequest {
+	Hash string `json:"hash,optional"`
+	Name string `json:"name,optional"`
+	Ext  string `json:"ext,optional"`
+	Size int64  `json:"size,optional"`
+	Path string `json:"path,optional"`
+}
+
+type FileUploadReply {
+	Identity string `json:"identity"`
+	Ext      string `json:"ext"`
+	Name     string `json:"name"`
+}
+
+type data {
+	Data string `json:"data"`
+}
+
+service core-api {
+	@handler userlogin
+	post /user/login (userRequest) returns (Response)
+	@handler userregister
+	post /user/register (userRegister) returns (Response)
+	@handler usercode
+	post /user/code (data) returns (data)
+
+}
+
+@server (
+	middleware :Auth
+)
+service core-api{
+	@handler FileUpload
+	post /file/upload(FileUploadRequest) returns (FileUploadReply)
+	@handler UserRepositorySave
+	post /user/repository/save(UserRepositorySaveRequest) returns (UserRepositorySaveReply)
+	@handler UserFileList
+	post /user/file/list(UserFilerequset) returns (UserFilereply)
+	@handler ShareBasicCreate
+	post /share/basic/create(ShareBasicCreateRequest) returns (ShareBasicCreateReply)
+	@handler ShareBasicSave
+	post /share/basic/save(ShareBasicSaveRequest) returns (ShareBasicSaveReply)
+	@handler FileUploadPrepare
+	post /file/upload/prepare(FileUploadPrepareRequest) returns (FileUploadPrepareReply)
+	@handler FileUploadChunk
+	post /file/upload/chunk(FileUploadChunkRequest) returns (FileUploadChunkReply)
+	@handler FileUploadChunkComplete
+	post /file/upload/chunk/complete(FileUploadChunkCompleteRequest) returns (FileUploadChunkCompleteReply)
+	@handler  FileDelete
+	delete /file/delete  (FiledeleteRequest) returns (FiledeleteReply)
+
+}
+
+type FiledeleteRequest {
+	Name               string `json:"name"`
+	Ext                string `json:"ext"`
+	RepositoryIdentity string `json:"repositoryIdentity"`
+}
+type FiledeleteReply {
+}
+
+type FileUploadChunkCompleteRequest {
+	Md5        string      `json:"md5"`
+	Name       string      `json:"name"`
+	Ext        string      `json:"ext"`
+	Size       int64       `json:"size"`
+	Key        string      `json:"key"`
+	UploadId   string      `json:"upload_id"`
+	CosObjects []CosObject `json:"cos_objects"`
+}
+type CosObject {
+	PartNumber int    `json:"part_number"`
+	Etag       string `json:"etag"`
+}
+type FileUploadChunkCompleteReply {
+	Identity string `json:"identity"` // 存储池identity
+}
+type FileUploadChunkReply {
+	Etag string `json:"etag"` // MD5
+}
+
+type FileUploadChunkRequest {
+}
+
+type UserRepositorySaveRequest {
+	ParentId           int64  `json:"parentId"`
+	RepositoryIdentity string `json:"repositoryIdentity"`
+	Ext                string `json:"ext"`
+	Name               string `json:"name"`
+}
+
+type UserRepositorySaveReply {}
+
+type UserFilerequset {
+	Identity string `json:"identity,optional"`
+	Page     int    `json:"page,optional"`
+	Size     int    `json:"size,optional"`
+}
+type UserFilereply {
+	List  []*UserFile `json:"list"`
+	Count int64       `json:"count"`
+}
+type UserFile {
+	Id                 int64  `json:"id"`
+	Identity           string `json:"identity"`
+	RepositoryIdentity string `json:"repository_identity"`
+	Name               string `json:"name"`
+	Ext                string `json:"ext"`
+	Path               string `json:"path"`
+	Size               int64  `json:"size"`
+}
+type ShareBasicCreateRequest {
+	UserRepositoryIdentity string `json:"user_repository_identity"`
+	ExpiredTime            int    `json:"expired_time"`
+}
+
+type ShareBasicCreateReply {
+	Identity string `json:"identity"`
+}
+
+type ShareBasicSaveRequest {
+	RepositoryIdentity string `json:"repository_identity"`
+	ParentId           int64  `json:"parent_id"`
+}
+
+type ShareBasicSaveReply {
+	Identity string `json:"identity"`
+}
+
+type FileUploadPrepareRequest {
+	Md5  string `json:"md5"`
+	Name string `json:"name"`
+	Ext  string `json:"ext"`
+}
+
+type FileUploadPrepareReply {
+	Identity string `json:"identity"`
+	UploadId string `json:"upload_id"`
+	Key      string `json:"key"`
+}
